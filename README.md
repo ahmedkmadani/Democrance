@@ -9,7 +9,6 @@ The project is a microservice web application developed using the following core
 - Python 3.8.1
 - Django framework 4.0.4
 - PostgresSQL
-- Redis
 
 ## Dev env installation
 
@@ -35,12 +34,6 @@ docker-compose up -d --build
 ```
 
 Running app will be available at: http://localhost:8000/api/v1/
-
-For unit tests run:
-
-```bash
-docker-compose run --rm api python manage.py test
-```
 
 ## Code style
 
