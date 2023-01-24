@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  api:
+    image: api
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: gunicorn --bind 0.0.0.0:8000 democrance.wsgi -c democrance/gunicorn/default.conf.py
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    container_name: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: democrance_admin
+      POSTGRES_DB: db_democrance
+
+volumes:
+  postgres_data:
